@@ -1,0 +1,12 @@
+#!/bin/bash
+fn=$1
+txfn=tex/${fn}.tex 
+if [[ ! -s $txfn ]] ; then 
+  echo no file $txfn present, exiting
+  exit 1 
+fi 
+for x in 1 2 3 ; do 
+  pdflatex tex/${fn}
+  bibtex $fn
+done
+rm ${fn}.aux ${fn}.bbl ${fn}.log ${fn}.blg
